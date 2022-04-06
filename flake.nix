@@ -41,14 +41,14 @@
                         wasm-bindgen \
                         --target nodejs \
                         --out-dir $out/src \
-                        target/wasm32-unknown-unknown/release/gcd.wasm;
+                        target/wasm32-unknown-unknown/release/yew-tut.wasm;
                     '';
 
                     installPhase = "echo 'Skipping installPhase'";
                 };
 
                 devShell = with pkgs; mkShell {
-                    buildInputs = [ cargo rustc rustfmt pre-commit rustPackages.clippy trunk wasm-bindgen-cli ];
+                    buildInputs = [ rust rustfmt pre-commit rustPackages.clippy trunk wasm-bindgen-cli ];
                     RUST_SRC_PATH = rustPlatform.rustLibSrc;
                 };
             }

@@ -16,7 +16,7 @@
                 overlays = [ rust-overlay.overlay ];
                 pkgs = import nixpkgs { inherit overlays system; }; 
                 rust = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
-                inputs = [ rust pkgs.wasm-bindgen-cli ];
+                inputs = [ rust pkgs.wasm-bindgen-cli pkgs.zlib ];
             in {
                 defaultPackage = pkgs.rustPlatform.buildRustPackage {
                     pname = "rust-yew-tut";
@@ -48,7 +48,7 @@
                 };
 
                 devShell = with pkgs; mkShell {
-                    buildInputs = [ rust rustfmt pre-commit rustPackages.clippy trunk wasm-bindgen-cli ];
+                    buildInputs = [ rust rustfmt pre-commit rustPackages.clippy rls trunk wasm-bindgen-cli ];
                     RUST_SRC_PATH = rustPlatform.rustLibSrc;
                 };
             }

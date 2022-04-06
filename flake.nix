@@ -3,7 +3,7 @@
     
     inputs = {
         flake-utils.url = "github:numtide/flake-utils";
-        nixpkgs.url = "github:NixOS/nixpkgs/release-21.11";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
         rust-overlay = {
             url = "github:oxalica/rust-overlay";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +50,9 @@
                 devShell = with pkgs; mkShell {
                     buildInputs = [ rust rustfmt pre-commit rustPackages.clippy rls trunk wasm-bindgen-cli ];
                     RUST_SRC_PATH = rustPlatform.rustLibSrc;
+                    shellHook = ''
+                        trunk serve &
+                    '';
                 };
             }
         );

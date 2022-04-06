@@ -437,6 +437,5 @@ dependencies = [
 name = "yew-tut"
 version = "0.1.0"
 dependencies = [
- "wasm-bindgen",
  "yew",
 ]
